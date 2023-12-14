@@ -1,0 +1,16 @@
+{
+    ".url": {
+        "com.natfrp.launcher": {
+            "title": "Sakura Frp",
+            "desc": "SakuraFrp Launcher makes it easy to manage your SakuraFrp tunnels.",
+            "icon": "images/natfrp-{0}.png",
+            "type": "url",
+            "protocol": "https",
+            "port": "4101",
+            "url": "/",
+            "allUsers": true,
+            "grantPrivilege": "all",
+            "advanceGrantPrivilege": true
+        }
+    }
+}

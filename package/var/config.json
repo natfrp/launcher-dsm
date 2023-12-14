@@ -1,0 +1,11 @@
+{
+    "token": "",
+    "webui_port": -1,
+    "webui_host": "0.0.0.0",
+    "webui_pass": "",
+    "update_interval": 604800,
+    "remote_management": false,
+    "remote_management_key": "",
+    "log_file": "",
+    "log_stdout": true
+}

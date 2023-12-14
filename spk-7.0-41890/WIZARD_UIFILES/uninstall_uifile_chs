@@ -1,0 +1,16 @@
+[{
+  "step_title": "卸载 SakuraFrp 启动器",
+  "items": [{
+    "type": "singleselect",
+    "desc": "选择是否要保留启动器配置:",
+    "subitems": [{
+      "key": "wizard_keep_data",
+      "desc": "<b>仅卸载</b> 保留数据和配置文件，以供重装后使用.",
+      "defaultValue": true
+    }, {
+      "key": "wizard_delete_data",
+      "desc": "<b style=\"color: red\">同时抹掉数据和配置文件. (不可逆操作)</b>",
+      "defaultValue": false
+    }]
+  }]
+}]

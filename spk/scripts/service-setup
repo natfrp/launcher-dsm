@@ -1,0 +1,89 @@
+### Generic variables and functions
+### -------------------------------
+
+if [ -z "${SYNOPKG_PKGNAME}" ] || [ -z "${SYNOPKG_DSM_VERSION_MAJOR}" ]; then
+  echo "Error: Environment variables are not set." 1>&2;
+  echo "Please run me using synopkg instead. Example: \"synopkg start [packagename]\"" 1>&2;
+  exit 1
+fi
+
+USER="natfrp"
+EFF_USER="sc-natfrp"
+
+
+# Service port
+SERVICE_PORT="4101"
+
+# define SYNOPKG_PKGVAR for compatibility with DSM7
+if [ -z "${SYNOPKG_PKGVAR}" ]; then
+    SYNOPKG_PKGVAR="${SYNOPKG_PKGDEST}/var"
+fi
+
+# start-stop-status script redirect stdout/stderr to LOG_FILE
+LOG_FILE="${SYNOPKG_PKGVAR}/${SYNOPKG_PKGNAME}.log"
+
+# Service command has to deliver its pid into PID_FILE
+PID_FILE="${SYNOPKG_PKGVAR}/${SYNOPKG_PKGNAME}.pid"
+
+
+### Package specific variables and functions
+### ----------------------------------------
+
+export LANG=en_US.UTF-8
+export TMP_DIR=${SYNOPKG_PKGTMP}
+export NATFRP_SERVICE_WD=${SYNOPKG_PKGVAR}
+export NATFRP_SERVICE_LOCK=${PID_FILE}
+export NATFRP_UPDATE_OVERRIDE=launcher-dsm
+
+SERVICE_BIN="${SYNOPKG_PKGDEST}/bin/natfrp-service"
+CFG_FILE="${SYNOPKG_PKGVAR}/config.json"
+
+SVC_BACKGROUND=y
+SERVICE_COMMAND="$SERVICE_BIN --daemon"
+
+quote_json() {
+    echo $1 | sed -e 's|\\|\\\\|g' -e 's|\"|\\\"|g'
+}
+
+edit_cfg() {
+    echo "edit_cfg $1 $2"
+
+    mod=$(jq ".$1 = $2" "$CFG_FILE")
+    if [ $? != 0 ]; then
+        echo "Failed to update config.json"
+        exit 1
+    fi
+    echo "$mod" >"$CFG_FILE"
+}
+
+service_postinst() {
+    if [ "${SYNOPKG_PKG_STATUS}" = "INSTALL" ]; then
+        # - Token
+        if [ "$wizard_token" != "" ]; then
+            edit_cfg token "\"$wizard_token\""
+        fi
+
+        # - Web UI
+        if [ "$wizard_webui" == "true" ]; then
+            edit_cfg webui_port "4101"
+            edit_cfg webui_pass "\"$(quote_json $wizard_webui_pass)\""
+        else
+            edit_cfg webui_port "-1"
+            edit_cfg webui_pass '""'
+        fi
+
+        # - Remote Management
+        edit_cfg "remote_management" "$wizard_remote_mgmt"
+
+        if [ "$wizard_remote_mgmt" == "true" ]; then
+            pass=$($SERVICE_BIN remote-kdf "$wizard_remote_mgmt_key")
+            if [ $? != 0 ]; then
+                echo "Remote KDF failed"
+                exit 1
+            else
+                edit_cfg remote_management_key "\"$(quote_json $pass)\""
+            fi
+            unset pass
+        fi
+    fi
+}

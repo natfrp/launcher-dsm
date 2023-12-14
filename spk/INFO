@@ -1,0 +1,19 @@
+arch="PLACEHOLDER"
+version="PLACEHOLDER"
+os_min_ver="PLACEHOLDER"
+checksum="PLACEHOLDER"
+
+package="natfrp"
+description="SakuraFrp Launcher makes it easy to manage your SakuraFrp tunnels."
+description_chs="SakuraFrp 启动器使您可以轻松管理 SakuraFrp 隧道。"
+
+maintainer="SakuraFrp"
+maintainer_url="https://github.com/natfrp/launcher-dsm"
+
+helpurl="https://doc.natfrp.com/launcher/usage#dsm"
+displayname="Sakura Frp"
+dsmuidir="app"
+dsmappname="com.natfrp.launcher"
+
+distributor=""
+distributor_url=""
