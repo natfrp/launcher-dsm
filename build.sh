@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf .tmp
 
-TIMESTAMP=$(date)
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 DSM6_VERSION="6.0-7321"
 DSM7_VERSION="7.0-41890"
@@ -56,8 +56,7 @@ build_arch() {
 }
 
 chmod +x binary/natfrp_service_linux_amd64
-# version=$(binary/natfrp_service_linux_amd64 -v)
-version=3.0.7
+version=$(binary/natfrp_service_linux_amd64 -v)
 echo "service version: $version"
 
 version=$version-1
