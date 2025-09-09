@@ -63,6 +63,10 @@ version=$version-1
 
 # todo: package
 
+build_arch 386 \
+    "apollolake avoton braswell broadwell broadwellnk broadwellntbap bromolow cedarview denverton dockerx64 geminilake grantley purley kvmx64 v1000 x86 x86_64" \
+    "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 geminilake grantley kvmx64 purley r1000 v1000"
+
 build_arch amd64 \
     "apollolake avoton braswell broadwell broadwellnk broadwellntbap bromolow cedarview denverton dockerx64 geminilake grantley purley kvmx64 v1000 x86 x86_64" \
     "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 geminilake grantley kvmx64 purley r1000 v1000"
