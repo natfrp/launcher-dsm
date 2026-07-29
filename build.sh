@@ -65,11 +65,11 @@ version=$version-1
 
 build_arch 386 \
     "apollolake avoton braswell broadwell broadwellnk broadwellntbap bromolow cedarview denverton dockerx64 geminilake grantley purley kvmx64 v1000 x86 x86_64" \
-    "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 geminilake grantley kvmx64 purley r1000 v1000"
+    "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 epyc7003 epyc7003ntb geminilake geminilakenk grantley icelaked kvmx64 purley r1000 r1000nk v1000 v1000nk"
 
 build_arch amd64 \
     "apollolake avoton braswell broadwell broadwellnk broadwellntbap bromolow cedarview denverton dockerx64 geminilake grantley purley kvmx64 v1000 x86 x86_64" \
-    "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 geminilake grantley kvmx64 purley r1000 v1000"
+    "apollolake avoton braswell broadwell broadwellnk broadwellnkv2 broadwellntbap bromolow cedarview denverton epyc7002 epyc7003 epyc7003ntb geminilake geminilakenk grantley icelaked kvmx64 purley r1000 r1000nk v1000 v1000nk"
 
 build_arch arm64 \
     "rtd1296 armada37xx" \
